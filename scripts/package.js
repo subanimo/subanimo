@@ -50,6 +50,6 @@ fs.writeFileSync(bat, fs.readFileSync(bat, "utf-8").replace(/\r?\n/g, "\r\n"));
 fs.chmodSync(path.join(stage, "Subanimo.command"), 0o755);
 
 fs.rmSync(zipFile, {force: true});
-execFileSync("zip", ["-qry", zipFile, "Subanimo"], {cwd: path.dirname(stage)});
+execFileSync("zip", ["-qryX", zipFile, "Subanimo"], {cwd: path.dirname(stage)});
 fs.rmSync(path.join(releaseDir, "stage"), {recursive: true, force: true});
 console.log(`[package] ${zipFile} (${(fs.statSync(zipFile).size / 1e6).toFixed(1)} MB)`);
