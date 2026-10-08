@@ -45,6 +45,7 @@ const I18N = {
     "s4.resolve.3": "Animasyonlar yeni bir timeline'da doğru zamanlarda gelir. Videonuzun timeline'ı 01:00:00:00'dan başlamalı (Resolve'un varsayılanı).",
     license: "Yalnızca ticari olmayan kullanım içindir (PolyForm Noncommercial 1.0.0). Görüntüler Remotion ile üretilir; Remotion'ın kendi lisans koşulları da geçerlidir (remotion.dev/license).",
     output: "Çıktı klasörü:",
+    openOutput: "Klasörü aç",
     "notice.title": "Başlamadan önce",
     "notice.body": "Subanimo yalnızca ticari olmayan kullanım içindir (PolyForm Noncommercial 1.0.0): kişisel projeler, hobi, eğitim ve hayır işleri. Müşteri işleri, ücretli hizmetler ve ticari içerik üretimi için kullanılamaz.",
     "notice.remotion": "Animasyonlar Remotion kütüphanesiyle üretilir. Remotion'ın lisans koşulları için: remotion.dev/license",
@@ -98,6 +99,7 @@ const I18N = {
     "s4.resolve.3": "The animations arrive on a new timeline at the right times. Your video's timeline should start at 01:00:00:00 (Resolve's default).",
     license: "For non-commercial use only (PolyForm Noncommercial 1.0.0). Images are made with Remotion; Remotion's own license terms also apply (remotion.dev/license).",
     output: "Output folder:",
+    openOutput: "Open folder",
     "notice.title": "Before you start",
     "notice.body": "Subanimo is for non-commercial use only (PolyForm Noncommercial 1.0.0): personal projects, hobbies, education and charity. It may not be used for client work, paid services or commercial content production.",
     "notice.remotion": "Animations are made with the Remotion library. For Remotion's license terms see remotion.dev/license",
@@ -325,9 +327,21 @@ async function startJob(kind) {
 $("preview").addEventListener("click", () => startJob("preview"));
 $("render").addEventListener("click", () => startJob("render"));
 $("cancel").addEventListener("click", () => api("/api/cancel", {}));
+// The project shown in the app: the running/last job, otherwise the name typed in step 1.
+const projectName = () => state.job?.name || $("name").value.trim() || "";
 $("open-folder").addEventListener("click", () => api("/api/open", {name: state.job?.name}));
+$("open-output").addEventListener("click", () => api("/api/open", {name: projectName()}));
+
+// Footer shows the folder the button opens: the project's folder once it has output, otherwise the root.
+let outputRoot = "";
+let pathSep = "/";
+function renderOutputPath() {
+  const name = state.job?.name;
+  $("output-root").textContent = name ? outputRoot + pathSep + name : outputRoot;
+}
 
 function renderJob() {
+  renderOutputPath();
   const j = state.job;
   const running = j?.status === "running";
   $("job").hidden = !j;
@@ -383,7 +397,9 @@ function connect() {
   applyLang();
   try {
     const info = await (await fetch("/api/info")).json();
-    $("output-root").textContent = info.outputRoot;
+    outputRoot = info.outputRoot;
+    pathSep = info.sep || "/";
+    renderOutputPath();
   } catch {
     /* shown by the event stream */
   }

@@ -13,7 +13,8 @@ import type {VideoData} from "./types";
 
 const PORT = Number(process.env.SUBANIMO_PORT ?? 3210);
 const HOST = "127.0.0.1";
-const OUTPUT_ROOT = path.join(os.homedir(), "Subanimo");
+// Kept under an "out" subfolder so outputs never mix with the app files, even if the app itself was unzipped to ~/Subanimo.
+const OUTPUT_ROOT = path.join(os.homedir(), "Subanimo", "out");
 const UI_DIR = path.join(ROOT, "ui");
 const FPS = 30;
 const MB_PER_FRAME = 0.35; // ProRes 4444 1080p: real renders measured 0.28-0.47 MB per frame
@@ -244,7 +245,7 @@ async function handle(req: http.IncomingMessage, res: http.ServerResponse) {
     if (p === "/") return serveFile(res, UI_DIR, "index.html");
     if (p.startsWith("/ui/")) return serveFile(res, UI_DIR, decodeURIComponent(p.slice(4)));
     if (p.startsWith("/out/")) return serveFile(res, OUTPUT_ROOT, decodeURIComponent(p.slice(5)));
-    if (p === "/api/info") return send(res, 200, {app: "Subanimo", version: pkg.version, outputRoot: OUTPUT_ROOT, models: MODELS, setup, job});
+    if (p === "/api/info") return send(res, 200, {app: "Subanimo", version: pkg.version, outputRoot: OUTPUT_ROOT, sep: path.sep, models: MODELS, setup, job});
     if (p === "/api/prompt") {
       const model = (url.searchParams.get("model") ?? "chatgpt") as Model;
       const count = Math.max(5, Math.min(80, Number(url.searchParams.get("count") ?? 30) || 30));
@@ -280,7 +281,9 @@ async function handle(req: http.IncomingMessage, res: http.ServerResponse) {
     return send(res, 200, {ok: true});
   }
   if (p === "/api/open") {
-    const target = body.name ? path.join(OUTPUT_ROOT, safeName(body.name)) : OUTPUT_ROOT;
+    // Open the project's folder when it exists, otherwise the output root (never create empty project folders).
+    const project = body.name ? path.join(OUTPUT_ROOT, safeName(body.name)) : undefined;
+    const target = project && fs.existsSync(project) ? project : OUTPUT_ROOT;
     fs.mkdirSync(target, {recursive: true});
     openPath(target);
     return send(res, 200, {ok: true});

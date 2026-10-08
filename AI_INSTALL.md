@@ -46,7 +46,7 @@ Common causes:
 Tell the user:
 - Next time, they start Subanimo by right-clicking `Subanimo.command` → Open (Mac) or double-clicking `Subanimo.bat` (Windows).
 - The black terminal window must stay open while they use the app.
-- Rendered files go to the `Subanimo` folder in their home folder.
+- Rendered files go to `Subanimo/out/<video name>/` in their home folder; the "Open folder" button at the bottom of the page opens it.
 - Subanimo is for non-commercial use only (PolyForm Noncommercial 1.0.0, see LICENSE). It also uses Remotion, whose license applies: https://www.remotion.dev/license
 
 Do not change the source code, do not commit anything and do not publish anything on the user's behalf.

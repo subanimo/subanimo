@@ -3,6 +3,7 @@ dist/
 .runtime/
 release/
 out.mp4
+out/
 effects*/
 # downloaded during install (scripts/fetch-assets.js)
 public/

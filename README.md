@@ -29,7 +29,7 @@ Sonraki açılışlarda yalnızca 2. adım gerekir ve program birkaç saniyede a
 
 ## Kullanım
 
-Tarayıcıdaki sayfa sizi dört adımda götürür. Çıktılar `Subanimo/<video adı>/` klasörüne (ana kullanıcı klasörünüzde) yazılır:
+Tarayıcıdaki sayfa sizi dört adımda götürür. Çıktılar ana kullanıcı klasörünüzdeki `Subanimo/out/<video adı>/` klasörüne yazılır. Sayfanın altındaki **Klasörü aç** düğmesi bu klasörü açar:
 
 - `01-lowerThird.mov`, `02-questionHook.mov`, … şeffaf animasyonlar (ProRes 4444)
 - `timeline.fcpxml` ve `timeline-V1.edl`: Resolve için zaman çizelgeleri
@@ -114,7 +114,7 @@ Next time only step 2 is needed and the app opens in seconds.
 
 ## Usage
 
-The page walks you through four steps. Output goes to `Subanimo/<video name>/` in your home folder:
+The page walks you through four steps. Output goes to `Subanimo/out/<video name>/` in your home folder; the **Open folder** button at the bottom of the page opens it:
 
 - `01-lowerThird.mov`, `02-questionHook.mov`, … transparent animations (ProRes 4444)
 - `timeline.fcpxml` and `timeline-V1.edl`: timelines for Resolve
