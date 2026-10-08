@@ -53,7 +53,7 @@ Node.js 20+ gerekir.
 
 ```bash
 git clone https://github.com/subanimo/subanimo.git Subanimo && cd Subanimo
-npm ci && npm run build
+npm ci && npm run build && node dist/render.js app
 ```
 
 ```bash
@@ -138,7 +138,7 @@ Requires Node.js 20+.
 
 ```bash
 git clone https://github.com/subanimo/subanimo.git Subanimo && cd Subanimo
-npm ci && npm run build
+npm ci && npm run build && node dist/render.js app
 ```
 
 ```bash
