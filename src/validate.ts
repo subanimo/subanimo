@@ -270,8 +270,11 @@ export function validateVideoData(input: unknown, ctx?: SrtContext): ValidationR
 }
 
 /**
- * Chat apps often wrap the JSON in a ```json fence or add a sentence around it; keep only the object.
- * Returns undefined if no JSON object can be found.
+ * Pulls the JSON object out of a chat answer and parses it.
+ * Copying from chat apps often adds noise: a ```json fence or a sentence around the object, markdown
+ * escapes when the answer was not in a code block (ChatGPT copies `[` as `\[` and `_` as `\_`),
+ * non-breaking spaces, or typographic quotes. Each repair is only tried if the previous text did not parse.
+ * Returns undefined if no JSON object can be found; throws the original parse error if nothing helps.
  */
 export function extractJson(text: string): unknown {
   const fenced = /```(?:json)?\s*([\s\S]*?)```/i.exec(text);
@@ -279,5 +282,25 @@ export function extractJson(text: string): unknown {
   const start = body.indexOf("{");
   const end = body.lastIndexOf("}");
   if (start < 0 || end <= start) return undefined;
-  return JSON.parse(body.slice(start, end + 1));
+  const raw = body.slice(start, end + 1);
+
+  const repairs: Array<(s: string) => string> = [
+    (s) => s,
+    // Drop backslashes that are not valid JSON escapes (\" \\ \/ \b \f \n \r \t \u).
+    (s) => s.replace(/\\(["\\/bfnrtu])|\\/g, (_, keep) => (keep ? "\\" + keep : "")),
+    (s) => s.replace(/[\u00a0\u2007\u202f\ufeff\u200b]/g, (c) => (c === "\ufeff" || c === "\u200b" ? "" : " ")),
+    // Typographic quotes used as JSON delimiters (only when straight quotes are missing entirely).
+    (s) => (s.includes('"') ? s : s.replace(/[\u201c\u201d\u201e\u201f]/g, '"')),
+  ];
+  let firstError: unknown;
+  let current = raw;
+  for (const repair of repairs) {
+    current = repair(current);
+    try {
+      return JSON.parse(current);
+    } catch (e) {
+      firstError ??= e;
+    }
+  }
+  throw firstError;
 }

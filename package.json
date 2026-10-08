@@ -1,6 +1,6 @@
 {
   "name": "subanimo",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Turns a talking-head video's subtitles into transparent animated overlays (ProRes 4444) and DaVinci Resolve timelines. Local web app + CLI, built on Remotion.",
   "license": "PolyForm-Noncommercial-1.0.0",
   "homepage": "https://github.com/subanimo/subanimo#readme",

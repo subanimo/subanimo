@@ -70,7 +70,7 @@ const catalogText = () =>
 const body = (target: number) => `Plan on-screen graphics for a talking-head video from the attached SRT subtitle file.
 
 ## Output
-Reply with ONE valid JSON object and nothing else (no prose, no markdown fence, no comments):
+Reply with ONE valid JSON object inside a single \`\`\`json code block, and nothing else (no text before or after it, no comments). The code block matters: chat apps copy plain text from it without adding backslashes.
 {"effects": [ <effect>, <effect>, ... ]}
 
 Every effect is a FLAT object (no nested wrapper objects) with these base fields, always present:
@@ -124,6 +124,6 @@ export function buildPrompt(model: Model, target = 40): string {
     case "gemini":
       return `<!-- Gemini: paste this and upload altyazi.srt. API: responseMimeType "application/json". -->\nYou are a senior video editor.\n\n${core}\n\nGo through the whole file in order before answering.\n`;
     default:
-      return `<!-- Grok / DeepSeek / Mistral / Llama / Qwen: paste this and attach or paste the SRT. -->\nYou are a senior video editor. Answer with JSON only: start with "{", end with "}", no explanation, no markdown. Use only the listed effectType and transition names.\n\n${core}\n`;
+      return `<!-- Grok / DeepSeek / Mistral / Llama / Qwen: paste this and attach or paste the SRT. -->\nYou are a senior video editor. Answer with the JSON only, inside a single \`\`\`json code block, no explanation. Use only the listed effectType and transition names.\n\n${core}\n`;
   }
 }
