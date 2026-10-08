@@ -69,12 +69,22 @@ LOCK_HASH="$(shasum -a 256 package-lock.json | cut -d' ' -f1)"
 MARKER="node_modules/.subanimo-installed"
 if [ ! -f "$MARKER" ] || [ "$(cat "$MARKER")" != "$LOCK_HASH" ]; then
   say "Installing components (one time, a few minutes)..." "Bileşenler kuruluyor (bir kerelik, birkaç dakika)..."
+  # npm ci wipes node_modules; keep the downloaded Chrome (node_modules/.remotion, ~170 MB) across updates.
+  CHROME_KEEP="$RUNTIME/remotion-cache"
+  if [ -d node_modules/.remotion ]; then
+    mkdir -p "$RUNTIME" && rm -rf "$CHROME_KEEP" && mv node_modules/.remotion "$CHROME_KEEP"
+  fi
   if [ -f dist/render.js ]; then
-    npm ci --omit=dev --no-audit --no-fund || fail "Installation failed. Check the internet connection and start again." "Kurulum başarısız. İnternet bağlantısını kontrol edip yeniden başlatın."
+    npm ci --omit=dev --no-audit --no-fund
   else
     # Source checkout (git clone): also build the app.
-    { npm ci --no-audit --no-fund && npm run build; } || fail "Installation failed. Check the internet connection and start again." "Kurulum başarısız. İnternet bağlantısını kontrol edip yeniden başlatın."
+    npm ci --no-audit --no-fund && npm run build
   fi
+  INSTALL_STATUS=$?
+  if [ -d "$CHROME_KEEP" ]; then
+    mkdir -p node_modules && rm -rf node_modules/.remotion && mv "$CHROME_KEEP" node_modules/.remotion
+  fi
+  [ "$INSTALL_STATUS" -eq 0 ] || fail "Installation failed. Check the internet connection and start again." "Kurulum başarısız. İnternet bağlantısını kontrol edip yeniden başlatın."
   printf '%s' "$LOCK_HASH" > "$MARKER"
 fi
 

@@ -69,6 +69,14 @@ $LockHash = (Get-FileHash (Join-Path $App "package-lock.json") -Algorithm SHA256
 $Marker = Join-Path $App "node_modules\.subanimo-installed"
 if (-not (Test-Path $Marker) -or ((Get-Content $Marker -Raw) -ne $LockHash)) {
   Say "Installing components (one time, a few minutes)..." "Bilesenler kuruluyor (bir kerelik, birkac dakika)..."
+  # npm ci wipes node_modules; keep the downloaded Chrome (node_modules\.remotion, ~170 MB) across updates.
+  $ChromeDir = Join-Path $App "node_modules\.remotion"
+  $ChromeKeep = Join-Path $Runtime "remotion-cache"
+  if (Test-Path $ChromeDir) {
+    New-Item -ItemType Directory -Force -Path $Runtime | Out-Null
+    if (Test-Path $ChromeKeep) { Remove-Item $ChromeKeep -Recurse -Force }
+    Move-Item $ChromeDir $ChromeKeep
+  }
   if (Test-Path (Join-Path $App "dist\render.js")) {
     & npm.cmd ci --omit=dev --no-audit --no-fund
   } else {
@@ -76,7 +84,13 @@ if (-not (Test-Path $Marker) -or ((Get-Content $Marker -Raw) -ne $LockHash)) {
     & npm.cmd ci --no-audit --no-fund
     if ($LASTEXITCODE -eq 0) { & npm.cmd run build }
   }
-  if ($LASTEXITCODE -ne 0) {
+  $InstallStatus = $LASTEXITCODE
+  if (Test-Path $ChromeKeep) {
+    New-Item -ItemType Directory -Force -Path (Join-Path $App "node_modules") | Out-Null
+    if (Test-Path $ChromeDir) { Remove-Item $ChromeDir -Recurse -Force }
+    Move-Item $ChromeKeep $ChromeDir
+  }
+  if ($InstallStatus -ne 0) {
     Fail "Installation failed. Check the internet connection and start again. If it keeps failing, move the Subanimo folder to a short path like C:\Subanimo." "Kurulum basarisiz. Internet baglantisini kontrol edip yeniden baslatin. Tekrar olursa Subanimo klasorunu C:\Subanimo gibi kisa bir yere tasiyin."
   }
   Set-Content -Path $Marker -Value $LockHash -NoNewline
