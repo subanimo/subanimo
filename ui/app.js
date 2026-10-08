@@ -54,6 +54,11 @@ const I18N = {
     "setup.preparing": "Hazırlanıyor…",
     "err.server": "Uygulamaya ulaşılamıyor. Siyah pencere kapandıysa Subanimo'u yeniden başlatın.",
     "err.busy": "Başka bir iş çalışıyor.",
+    newProject: "Yeni proje",
+    "newProject.confirm": "Mevcut altyazı ve yapay zeka cevabı ekrandan temizlensin mi? Üretilmiş dosyalarınız silinmez.",
+    "resume.text": "Önceki çalışmanız duruyor: {name}.",
+    "resume.yes": "Devam et",
+    "resume.no": "Kapat",
   },
   en: {
     tagline: "Transparent animations for your video, planned from its subtitles",
@@ -108,6 +113,11 @@ const I18N = {
     "setup.preparing": "Preparing…",
     "err.server": "Cannot reach the app. If the black window was closed, start Subanimo again.",
     "err.busy": "Another job is running.",
+    newProject: "New project",
+    "newProject.confirm": "Clear the current subtitles and AI answer from the page? Rendered files are not deleted.",
+    "resume.text": "Your previous work is saved: {name}.",
+    "resume.yes": "Continue",
+    "resume.no": "Dismiss",
   },
 };
 
@@ -125,11 +135,13 @@ const store = {
 
 const state = {
   lang: store.get("lang") || ((navigator.language || "").toLowerCase().startsWith("tr") ? "tr" : "en"),
-  srt: store.get("srt") || "",
-  srtName: store.get("srtName") || "",
-  json: store.get("json") || "",
+  // Filled in init(): restored only when the page is reloaded within the same app session.
+  srt: "",
+  srtName: "",
+  json: "",
   check: null,
   job: null,
+  hideJob: false, // set by "New project" so the previous job's results are not shown
   setup: null,
 };
 
@@ -158,6 +170,7 @@ function applyLang() {
   renderCheck();
   renderJob();
   renderSetup();
+  if (!$("resume").hidden) $("resume-text").textContent = t("resume.text", {name: store.get("name") || store.get("srtName") || "—"});
 }
 
 for (const b of document.querySelectorAll("[data-lang]")) {
@@ -197,6 +210,7 @@ function loadSrtFile(file) {
   reader.onload = () => {
     state.srt = String(reader.result);
     state.srtName = file.name;
+    $("resume").hidden = true;
     store.set("srt", state.srt);
     store.set("srtName", file.name);
     $("name").value = file.name.replace(/\.[^.]+$/, "");
@@ -317,6 +331,7 @@ function renderCheck() {
 /* ---------- step 4: preview & render ---------- */
 
 async function startJob(kind) {
+  state.hideJob = false;
   const {status, data} = await api(kind === "preview" ? "/api/preview" : "/api/render", {srt: state.srt, json: state.json, name: $("name").value || state.srtName || "video"});
   if (status === 409) alert(t("err.busy"));
   else if (status >= 400 && data.errors) {
@@ -328,7 +343,7 @@ $("preview").addEventListener("click", () => startJob("preview"));
 $("render").addEventListener("click", () => startJob("render"));
 $("cancel").addEventListener("click", () => api("/api/cancel", {}));
 // The project shown in the app: the running/last job, otherwise the name typed in step 1.
-const projectName = () => state.job?.name || $("name").value.trim() || "";
+const projectName = () => (state.hideJob ? "" : state.job?.name) || $("name").value.trim() || "";
 $("open-folder").addEventListener("click", () => api("/api/open", {name: state.job?.name}));
 $("open-output").addEventListener("click", () => api("/api/open", {name: projectName()}));
 
@@ -336,13 +351,13 @@ $("open-output").addEventListener("click", () => api("/api/open", {name: project
 let outputRoot = "";
 let pathSep = "/";
 function renderOutputPath() {
-  const name = state.job?.name;
+  const name = state.hideJob ? "" : state.job?.name;
   $("output-root").textContent = name ? outputRoot + pathSep + name : outputRoot;
 }
 
 function renderJob() {
   renderOutputPath();
-  const j = state.job;
+  const j = state.hideJob && state.job?.status !== "running" ? null : state.job;
   const running = j?.status === "running";
   $("job").hidden = !j;
   $("cancel").hidden = !running;
@@ -386,27 +401,74 @@ function connect() {
   };
 }
 
+/* ---------- new project / resume ---------- */
+
+const DRAFT_KEYS = ["srt", "srtName", "name", "json"];
+
+function loadDraft() {
+  state.srt = store.get("srt") || "";
+  state.srtName = store.get("srtName") || "";
+  state.json = store.get("json") || "";
+  $("json").value = state.json;
+  $("name").value = store.get("name") || "";
+  renderSrt();
+  if (state.json) runCheck();
+}
+
+function clearPage() {
+  state.srt = state.srtName = state.json = "";
+  state.check = null;
+  state.hideJob = true;
+  $("json").value = "";
+  $("name").value = "";
+  $("srt-file").value = "";
+  $("previews").innerHTML = "";
+  renderSrt();
+  renderCheck();
+  renderJob();
+}
+
+$("new-project").addEventListener("click", () => {
+  if ((state.srt || state.json) && !confirm(t("newProject.confirm"))) return;
+  for (const k of DRAFT_KEYS) store.set(k, "");
+  $("resume").hidden = true;
+  clearPage();
+});
+$("resume-yes").addEventListener("click", () => {
+  $("resume").hidden = true;
+  loadDraft();
+});
+$("resume-no").addEventListener("click", () => ($("resume").hidden = true));
+
 /* ---------- start ---------- */
 
 (async function init() {
   $("model").value = store.get("model") || "chatgpt";
   $("count").value = store.get("count") || "30";
-  $("json").value = state.json;
-  $("name").value = store.get("name") || "";
   updateAiLink();
   applyLang();
+  let info = null;
   try {
-    const info = await (await fetch("/api/info")).json();
+    info = await (await fetch("/api/info")).json();
     outputRoot = info.outputRoot;
     pathSep = info.sep || "/";
     renderOutputPath();
   } catch {
     /* shown by the event stream */
   }
+  // Same app session (page reload): restore silently. New start: begin empty, offer the saved work.
+  const sameSession = info && store.get("bootId") === info.bootId;
+  if (info) store.set("bootId", info.bootId);
+  const hasDraft = !!(store.get("srt") || store.get("json"));
+  if (sameSession) loadDraft();
+  else if (hasDraft) {
+    state.hideJob = true;
+    $("resume-text").textContent = t("resume.text", {name: store.get("name") || store.get("srtName") || "—"});
+    $("resume").hidden = false;
+  }
   if (!store.get("noticeSeen")) {
     $("notice").showModal();
     $("notice").addEventListener("close", () => store.set("noticeSeen", "1"));
   }
   connect();
-  if (state.json) runCheck();
 })();

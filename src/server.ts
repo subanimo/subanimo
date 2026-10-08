@@ -19,6 +19,8 @@ const UI_DIR = path.join(ROOT, "ui");
 const FPS = 30;
 const MB_PER_FRAME = 0.35; // ProRes 4444 1080p: real renders measured 0.28-0.47 MB per frame
 const pkg = JSON.parse(fs.readFileSync(path.join(ROOT, "package.json"), "utf-8"));
+// Changes on every start, so the page can tell a fresh start from a reload of the same session.
+const BOOT_ID = `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
 
 const m = (en: string, tr: string): Msg => ({en, tr});
 
@@ -245,7 +247,7 @@ async function handle(req: http.IncomingMessage, res: http.ServerResponse) {
     if (p === "/") return serveFile(res, UI_DIR, "index.html");
     if (p.startsWith("/ui/")) return serveFile(res, UI_DIR, decodeURIComponent(p.slice(4)));
     if (p.startsWith("/out/")) return serveFile(res, OUTPUT_ROOT, decodeURIComponent(p.slice(5)));
-    if (p === "/api/info") return send(res, 200, {app: "Subanimo", version: pkg.version, outputRoot: OUTPUT_ROOT, sep: path.sep, models: MODELS, setup, job});
+    if (p === "/api/info") return send(res, 200, {app: "Subanimo", version: pkg.version, outputRoot: OUTPUT_ROOT, sep: path.sep, bootId: BOOT_ID, models: MODELS, setup, job});
     if (p === "/api/prompt") {
       const model = (url.searchParams.get("model") ?? "chatgpt") as Model;
       const count = Math.max(5, Math.min(80, Number(url.searchParams.get("count") ?? 30) || 30));
