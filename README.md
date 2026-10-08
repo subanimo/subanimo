@@ -17,7 +17,7 @@ Konuşmalı videolarınızın altyazısından, videonun üstüne koyacağınız 
 
 İhtiyacınız olan: macOS veya Windows, internet (yalnızca ilk kurulumda) ve yaklaşık 3 GB boş alan (üretilen videolar için ayrıca yer gerekir).
 
-1. [Releases](../../releases) sayfasından `Subanimo-x.y.z.zip` dosyasını indirin ve açın.
+1. [Son sürüm sayfasından](https://github.com/subanimo/subanimo/releases/latest) `Subanimo-<sürüm>.zip` dosyasını (ör. `Subanimo-1.0.0.zip`) indirin ve açın.
 2. **Mac:** `Subanimo.command` dosyasına **sağ tıklayın → Aç → Aç**. (Uygulama imzasız olduğu için macOS bunu yalnızca ilk seferde sorar. Çift tıklarsanız "geliştirici doğrulanamadı" uyarısı çıkar; o zaman sağ tık → Aç yolunu kullanın.)
    **Windows:** `Subanimo.bat` dosyasına çift tıklayın. "Windows bilgisayarınızı korudu" çıkarsa **Ek bilgi → Yine de çalıştır**.
 3. İlk açılış birkaç dakika sürer: bileşenler program klasörünün içine indirilir. Bilgisayarınızda Node.js 20 veya üstü varsa o kullanılır; yoksa Node.js de program klasörüne indirilir. Bilgisayarınıza başka hiçbir şey kurulmaz.
@@ -52,7 +52,7 @@ Tarayıcıdaki sayfa sizi dört adımda götürür. Çıktılar `Subanimo/<video
 Node.js 20+ gerekir.
 
 ```bash
-git clone <repo-url> Subanimo && cd Subanimo
+git clone https://github.com/subanimo/subanimo.git Subanimo && cd Subanimo
 npm ci && npm run build
 ```
 
@@ -102,7 +102,7 @@ Turns the subtitles of a talking-head video into **transparent animated overlays
 
 You need macOS or Windows, an internet connection (first start only) and about 3 GB of free space (plus room for the rendered videos).
 
-1. Download `Subanimo-x.y.z.zip` from [Releases](../../releases) and unzip it.
+1. Download `Subanimo-<version>.zip` (e.g. `Subanimo-1.0.0.zip`) from the [latest release](https://github.com/subanimo/subanimo/releases/latest) and unzip it.
 2. **Mac:** **right-click** `Subanimo.command` **→ Open → Open**. (The app is not signed, so macOS asks once. Double-clicking shows "developer cannot be verified"; use right-click → Open instead.)
    **Windows:** double-click `Subanimo.bat`. If "Windows protected your PC" appears, click **More info → Run anyway**.
 3. The first start takes a few minutes: the components are downloaded into the app folder. If Node.js 20 or newer is already on your computer it is used; otherwise Node.js is downloaded into the app folder too. Nothing else is installed on your computer.
@@ -137,7 +137,7 @@ The page walks you through four steps. Output goes to `Subanimo/<video name>/` i
 Requires Node.js 20+.
 
 ```bash
-git clone <repo-url> Subanimo && cd Subanimo
+git clone https://github.com/subanimo/subanimo.git Subanimo && cd Subanimo
 npm ci && npm run build
 ```
 
