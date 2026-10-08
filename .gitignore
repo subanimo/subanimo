@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.runtime/
+release/
+out.mp4
+effects*/
+# downloaded during install (scripts/fetch-assets.js)
+public/
+# personal test data
+sample/*
+!sample/showcase.json
+!sample/showcase2.json
+!sample/showcase-variants.json
+.DS_Store
+*.part

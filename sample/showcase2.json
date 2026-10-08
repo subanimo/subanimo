@@ -1,0 +1,159 @@
+{
+ "durationInFrames": 1500,
+ "fps": 30,
+ "effects": [
+  {
+   "id": "big-punch",
+   "effectType": "bigStatement",
+   "text": "Her şeyi otomatik yaptım!",
+   "style": "punch",
+   "startFrame": 0,
+   "durationInFrames": 90
+  },
+  {
+   "id": "big-slam",
+   "effectType": "bigStatement",
+   "text": "Bu gerçek değil!",
+   "style": "slam",
+   "startFrame": 100,
+   "durationInFrames": 90
+  },
+  {
+   "id": "big-outline",
+   "effectType": "bigStatement",
+   "text": "Öğrenmeyi durdurma",
+   "style": "outline",
+   "startFrame": 200,
+   "durationInFrames": 90
+  },
+  {
+   "id": "big-split",
+   "effectType": "bigStatement",
+   "text": "Bilgi senin gücün",
+   "style": "split",
+   "startFrame": 300,
+   "durationInFrames": 90
+  },
+  {
+   "id": "big-stamp",
+   "effectType": "bigStatement",
+   "text": "Yatırım tavsiyesi değildir",
+   "style": "stamp",
+   "startFrame": 400,
+   "durationInFrames": 90
+  },
+  {
+   "id": "quote-big",
+   "effectType": "quote",
+   "text": "Bilgi burada olursa işinizi görürsünüz",
+   "highlight": [
+    "Bilgi"
+   ],
+   "subtext": "Konuşmacı",
+   "startFrame": 500,
+   "durationInFrames": 90
+  },
+  {
+   "id": "quote-card",
+   "effectType": "quote",
+   "text": "Bilgi burada olursa işinizi görürsünüz",
+   "highlight": [
+    "Bilgi"
+   ],
+   "subtext": "Konuşmacı",
+   "style": "card",
+   "align": "left",
+   "startFrame": 600,
+   "durationInFrames": 90
+  },
+  {
+   "id": "quote-minimal",
+   "effectType": "quote",
+   "text": "Bilgi burada olursa işinizi görürsünüz",
+   "highlight": [
+    "Bilgi"
+   ],
+   "style": "minimal",
+   "align": "left",
+   "startFrame": 700,
+   "durationInFrames": 90
+  },
+  {
+   "id": "side-right",
+   "effectType": "sideCard",
+   "text": "Neden önemli?",
+   "subtext": "Üç sebep",
+   "items": [
+    "Hız",
+    "Maliyet",
+    "Güvenlik"
+   ],
+   "align": "right",
+   "startFrame": 800,
+   "durationInFrames": 90
+  },
+  {
+   "id": "side-left",
+   "effectType": "sideCard",
+   "text": "Cihaz yarı yolda bırakır",
+   "items": [
+    "Pil biter",
+    "İnternet gider"
+   ],
+   "align": "left",
+   "position": "top",
+   "startFrame": 900,
+   "durationInFrames": 90
+  },
+  {
+   "id": "badge",
+   "effectType": "statBadge",
+   "text": "%90",
+   "label": "şirket kullanıyor",
+   "align": "right",
+   "position": "top",
+   "startFrame": 1000,
+   "durationInFrames": 90
+  },
+  {
+   "id": "badge-left",
+   "effectType": "statBadge",
+   "text": "8 saat",
+   "label": "günlük iletişim",
+   "align": "left",
+   "position": "bottom",
+   "startFrame": 1100,
+   "durationInFrames": 90
+  },
+  {
+   "id": "callout-left",
+   "effectType": "callout",
+   "text": "Dikkat: bu kısım önemli",
+   "subtext": "Not al",
+   "align": "left",
+   "startFrame": 1200,
+   "durationInFrames": 90
+  },
+  {
+   "id": "callout-right",
+   "effectType": "callout",
+   "text": "Burası kritik",
+   "align": "right",
+   "position": "top",
+   "startFrame": 1300,
+   "durationInFrames": 90
+  },
+  {
+   "id": "kinetic-left",
+   "effectType": "kineticText",
+   "text": "Önlemler almak zorundayız",
+   "highlight": [
+    "Önlemler"
+   ],
+   "annotation": "box",
+   "align": "left",
+   "startFrame": 1400,
+   "durationInFrames": 90
+  }
+ ]
+}

@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Subanimo</title>
+  <link rel="stylesheet" href="/ui/style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <span class="logo">▶</span>
+      <div>
+        <h1>Subanimo</h1>
+        <p data-i18n="tagline"></p>
+      </div>
+    </div>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="tr">Türkçe</button>
+      <button type="button" data-lang="en">English</button>
+    </div>
+  </header>
+
+  <div id="setup" class="banner" hidden></div>
+
+  <main>
+    <!-- 1. Subtitles -->
+    <section class="step" id="step-srt">
+      <div class="num">1</div>
+      <div class="body">
+        <h2 data-i18n="s1.title"></h2>
+        <p class="hint" data-i18n="s1.hint"></p>
+        <label class="drop" id="drop">
+          <input type="file" id="srt-file" accept=".srt,text/plain" hidden>
+          <span id="drop-text" data-i18n="s1.drop"></span>
+        </label>
+        <div class="row" id="name-row" hidden>
+          <label for="name" data-i18n="s1.name"></label>
+          <input id="name" type="text" maxlength="80">
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Prompt -->
+    <section class="step" id="step-prompt">
+      <div class="num">2</div>
+      <div class="body">
+        <h2 data-i18n="s2.title"></h2>
+        <div class="row">
+          <label for="model" data-i18n="s2.ai"></label>
+          <select id="model">
+            <option value="chatgpt">ChatGPT</option>
+            <option value="gemini">Gemini</option>
+            <option value="claude">Claude</option>
+            <option value="generic" data-i18n="s2.other"></option>
+          </select>
+          <label for="count" data-i18n="s2.count"></label>
+          <input id="count" type="number" min="5" max="80" value="30">
+        </div>
+        <ol class="howto">
+          <li data-i18n="s2.h1"></li>
+          <li data-i18n="s2.h2"></li>
+          <li data-i18n="s2.h3"></li>
+        </ol>
+        <div class="row">
+          <button type="button" class="primary" id="copy" data-i18n="s2.copy"></button>
+          <a class="button" id="open-ai" target="_blank" rel="noopener" data-i18n="s2.open"></a>
+          <span class="ok" id="copied" hidden data-i18n="s2.copied"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Answer -->
+    <section class="step" id="step-json">
+      <div class="num">3</div>
+      <div class="body">
+        <h2 data-i18n="s3.title"></h2>
+        <p class="hint" data-i18n="s3.hint"></p>
+        <textarea id="json" rows="8" spellcheck="false" data-i18n-placeholder="s3.placeholder"></textarea>
+        <div id="check"></div>
+      </div>
+    </section>
+
+    <!-- 4. Preview & render -->
+    <section class="step" id="step-render">
+      <div class="num">4</div>
+      <div class="body">
+        <h2 data-i18n="s4.title"></h2>
+        <p class="hint" data-i18n="s4.hint"></p>
+        <div class="row">
+          <button type="button" id="preview" data-i18n="s4.preview" disabled></button>
+          <button type="button" class="primary" id="render" data-i18n="s4.render" disabled></button>
+          <button type="button" class="danger" id="cancel" data-i18n="s4.cancel" hidden></button>
+        </div>
+        <div id="job" hidden>
+          <div class="bar"><div id="bar-fill"></div></div>
+          <p id="job-step"></p>
+        </div>
+        <div id="previews" class="grid"></div>
+        <div id="done" hidden>
+          <p class="ok" data-i18n="s4.done"></p>
+          <button type="button" class="primary" id="open-folder" data-i18n="s4.open"></button>
+          <h3 data-i18n="s4.resolve.title"></h3>
+          <ol class="howto">
+            <li data-i18n="s4.resolve.1"></li>
+            <li data-i18n="s4.resolve.2"></li>
+            <li data-i18n="s4.resolve.3"></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p data-i18n="license"></p>
+    <p class="muted"><span data-i18n="output"></span> <code id="output-root"></code></p>
+  </footer>
+
+  <dialog id="notice">
+    <h2 data-i18n="notice.title"></h2>
+    <p data-i18n="notice.body"></p>
+    <p data-i18n="notice.remotion"></p>
+    <form method="dialog"><button class="primary" data-i18n="notice.ok"></button></form>
+  </dialog>
+
+  <script src="/ui/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,347 @@
+{
+ "durationInFrames": 3130,
+ "fps": 30,
+ "effects": [
+  {
+   "id": "kineticText-typewriter",
+   "effectType": "kineticText",
+   "startFrame": 0,
+   "durationInFrames": 90,
+   "text": "Önlemler almak zorundayız",
+   "highlight": [
+    "Önlemler"
+   ],
+   "annotation": "box",
+   "style": "typewriter"
+  },
+  {
+   "id": "kineticText-bounce",
+   "effectType": "kineticText",
+   "startFrame": 100,
+   "durationInFrames": 90,
+   "text": "Önlemler almak zorundayız",
+   "highlight": [
+    "Önlemler"
+   ],
+   "annotation": "box",
+   "style": "bounce"
+  },
+  {
+   "id": "kineticText-reveal",
+   "effectType": "kineticText",
+   "startFrame": 200,
+   "durationInFrames": 90,
+   "text": "Önlemler almak zorundayız",
+   "highlight": [
+    "Önlemler"
+   ],
+   "annotation": "box",
+   "style": "reveal"
+  },
+  {
+   "id": "captionHighlight-plain",
+   "effectType": "captionHighlight",
+   "startFrame": 300,
+   "durationInFrames": 90,
+   "text": "Eğer bir bilgi buradaysa o sizin gücünüz",
+   "position": "bottom",
+   "align": "left",
+   "style": "plain"
+  },
+  {
+   "id": "counter-plain",
+   "effectType": "counter",
+   "startFrame": 400,
+   "durationInFrames": 90,
+   "text": "Doğru kabul etmeyin",
+   "from": 0,
+   "to": 100,
+   "suffix": "%",
+   "align": "left",
+   "style": "plain"
+  },
+  {
+   "id": "versus-split",
+   "effectType": "versus",
+   "startFrame": 500,
+   "durationInFrames": 90,
+   "text": "Fark ne?",
+   "left": "Manuel kodlama",
+   "right": "Yapay zeka destekli",
+   "style": "split"
+  },
+  {
+   "id": "checklist-floating",
+   "effectType": "checklist",
+   "startFrame": 600,
+   "durationInFrames": 90,
+   "text": "Cihaz yarı yolda bırakır",
+   "items": [
+    "Pil biter",
+    "İnternet gider"
+   ],
+   "mode": "cross",
+   "align": "left",
+   "style": "floating"
+  },
+  {
+   "id": "timeline-vertical",
+   "effectType": "timeline",
+   "startFrame": 700,
+   "durationInFrames": 90,
+   "text": "Her derde deva denilenler",
+   "steps": [
+    "VR",
+    "Blockchain",
+    "NFT"
+   ],
+   "align": "left",
+   "style": "vertical"
+  },
+  {
+   "id": "questionHook-marks",
+   "effectType": "questionHook",
+   "startFrame": 800,
+   "durationInFrames": 90,
+   "text": "Elimizden ne gelir?",
+   "style": "marks"
+  },
+  {
+   "id": "chapter-banner",
+   "effectType": "chapter",
+   "startFrame": 900,
+   "durationInFrames": 90,
+   "text": "Öğrenmeyi bırakma",
+   "number": "1",
+   "subtext": "Birinci konu",
+   "align": "left",
+   "style": "banner"
+  },
+  {
+   "id": "chapter-minimal",
+   "effectType": "chapter",
+   "startFrame": 1000,
+   "durationInFrames": 90,
+   "text": "Öğrenmeyi bırakma",
+   "number": "1",
+   "subtext": "Birinci konu",
+   "align": "left",
+   "style": "minimal"
+  },
+  {
+   "id": "quote-card",
+   "effectType": "quote",
+   "startFrame": 1100,
+   "durationInFrames": 90,
+   "text": "Bilgi burada olursa işinizi görürsünüz",
+   "highlight": [
+    "Bilgi"
+   ],
+   "subtext": "Konuşmacı",
+   "align": "left",
+   "style": "card"
+  },
+  {
+   "id": "quote-minimal",
+   "effectType": "quote",
+   "startFrame": 1200,
+   "durationInFrames": 90,
+   "text": "Bilgi burada olursa işinizi görürsünüz",
+   "highlight": [
+    "Bilgi"
+   ],
+   "subtext": "Konuşmacı",
+   "align": "left",
+   "style": "minimal"
+  },
+  {
+   "id": "bigStatement-slam",
+   "effectType": "bigStatement",
+   "startFrame": 1300,
+   "durationInFrames": 90,
+   "text": "HER ŞEYİ OTOMATİK YAPTIM!",
+   "style": "slam"
+  },
+  {
+   "id": "bigStatement-outline",
+   "effectType": "bigStatement",
+   "startFrame": 1400,
+   "durationInFrames": 90,
+   "text": "HER ŞEYİ OTOMATİK YAPTIM!",
+   "style": "outline"
+  },
+  {
+   "id": "bigStatement-split",
+   "effectType": "bigStatement",
+   "startFrame": 1500,
+   "durationInFrames": 90,
+   "text": "HER ŞEYİ OTOMATİK YAPTIM!",
+   "style": "split"
+  },
+  {
+   "id": "bigStatement-stamp",
+   "effectType": "bigStatement",
+   "startFrame": 1600,
+   "durationInFrames": 90,
+   "text": "HER ŞEYİ OTOMATİK YAPTIM!",
+   "style": "stamp"
+  },
+  {
+   "id": "glitch-vhs",
+   "effectType": "glitch",
+   "startFrame": 1700,
+   "durationInFrames": 90,
+   "text": "BU GERÇEK DEĞİL!",
+   "style": "vhs"
+  },
+  {
+   "id": "glitch-shake",
+   "effectType": "glitch",
+   "startFrame": 1800,
+   "durationInFrames": 90,
+   "text": "BU GERÇEK DEĞİL!",
+   "style": "shake"
+  },
+  {
+   "id": "emojiBurst-trio",
+   "effectType": "emojiBurst",
+   "startFrame": 1900,
+   "durationInFrames": 90,
+   "text": "Çözüm aklıma geldi!",
+   "emoji": "light-bulb",
+   "style": "trio"
+  },
+  {
+   "id": "shapesBurst-rain",
+   "effectType": "shapesBurst",
+   "startFrame": 2000,
+   "durationInFrames": 90,
+   "text": "Başarı!",
+   "shapes": [
+    "star",
+    "heart"
+   ],
+   "style": "rain"
+  },
+  {
+   "id": "shapesBurst-ring",
+   "effectType": "shapesBurst",
+   "startFrame": 2100,
+   "durationInFrames": 90,
+   "text": "Başarı!",
+   "shapes": [
+    "star",
+    "heart"
+   ],
+   "style": "ring"
+  },
+  {
+   "id": "lowerThird-pill",
+   "effectType": "lowerThird",
+   "startFrame": 2200,
+   "durationInFrames": 90,
+   "text": "İspanya",
+   "subtext": "Konuşmacının bulunduğu yer",
+   "align": "left",
+   "style": "pill"
+  },
+  {
+   "id": "lowerThird-tag",
+   "effectType": "lowerThird",
+   "startFrame": 2300,
+   "durationInFrames": 90,
+   "text": "İspanya",
+   "subtext": "Konuşmacının bulunduğu yer",
+   "align": "left",
+   "style": "tag"
+  },
+  {
+   "id": "progressBar-segments",
+   "effectType": "progressBar",
+   "startFrame": 2400,
+   "durationInFrames": 90,
+   "text": "Otomasyon seviyesi",
+   "value": 50,
+   "marks": [
+    {
+     "value": 0,
+     "label": "0%"
+    },
+    {
+     "value": 100,
+     "label": "100%"
+    }
+   ],
+   "style": "segments"
+  },
+  {
+   "id": "transitionCard-dark",
+   "effectType": "transitionCard",
+   "startFrame": 2500,
+   "durationInFrames": 90,
+   "text": "Sonraki bölüm",
+   "subtext": "İş görüşmeleri",
+   "enter": "clockWipe",
+   "exit": "iris",
+   "style": "dark"
+  },
+  {
+   "id": "transitionCard-split",
+   "effectType": "transitionCard",
+   "startFrame": 2600,
+   "durationInFrames": 90,
+   "text": "Sonraki bölüm",
+   "subtext": "İş görüşmeleri",
+   "enter": "clockWipe",
+   "exit": "iris",
+   "style": "split"
+  },
+  {
+   "id": "statBadge-circle",
+   "effectType": "statBadge",
+   "startFrame": 2700,
+   "durationInFrames": 90,
+   "text": "%90",
+   "label": "şirket kullanıyor",
+   "align": "right",
+   "position": "top",
+   "style": "circle"
+  },
+  {
+   "id": "statBadge-ribbon",
+   "effectType": "statBadge",
+   "startFrame": 2800,
+   "durationInFrames": 90,
+   "text": "%90",
+   "label": "şirket kullanıyor",
+   "align": "right",
+   "position": "top",
+   "style": "ribbon"
+  },
+  {
+   "id": "sideCard-plain",
+   "effectType": "sideCard",
+   "startFrame": 2900,
+   "durationInFrames": 90,
+   "text": "Neden önemli?",
+   "subtext": "Üç sebep",
+   "items": [
+    "Hız",
+    "Maliyet",
+    "Güvenlik"
+   ],
+   "align": "right",
+   "style": "plain"
+  },
+  {
+   "id": "callout-arrow",
+   "effectType": "callout",
+   "startFrame": 3000,
+   "durationInFrames": 90,
+   "text": "Dikkat: bu kısım önemli",
+   "subtext": "Not al",
+   "align": "left",
+   "style": "arrow"
+  }
+ ]
+}

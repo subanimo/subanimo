@@ -1,0 +1,235 @@
+{
+  "durationInFrames": 2100,
+  "fps": 30,
+  "effects": [
+    {
+      "id": "kinetic",
+      "effectType": "kineticText",
+      "text": "Yazılımcılar bundan sonra ne yapacak?",
+      "highlight": [
+        "ne",
+        "yapacak"
+      ],
+      "annotation": "highlight",
+      "startFrame": 0,
+      "durationInFrames": 90
+    },
+    {
+      "id": "caption",
+      "effectType": "captionHighlight",
+      "text": "Bolca örnekle beraber çayınızı kahvenizi alın",
+      "position": "bottom",
+      "startFrame": 100,
+      "durationInFrames": 90
+    },
+    {
+      "id": "counter",
+      "effectType": "counter",
+      "text": "Otomasyon seviyesi",
+      "from": 0,
+      "to": 100,
+      "suffix": "%",
+      "startFrame": 200,
+      "durationInFrames": 90
+    },
+    {
+      "id": "gauge",
+      "effectType": "gauge",
+      "text": "Şirketler bu ibreyi nerede tutacak?",
+      "value": 65,
+      "marks": [
+        {
+          "value": 0,
+          "label": "0"
+        },
+        {
+          "value": 30,
+          "label": "30"
+        },
+        {
+          "value": 70,
+          "label": "70"
+        },
+        {
+          "value": 100,
+          "label": "100"
+        }
+      ],
+      "startFrame": 300,
+      "durationInFrames": 90
+    },
+    {
+      "id": "versus",
+      "effectType": "versus",
+      "text": "Fark ne?",
+      "left": "MANUEL KODLAMA",
+      "right": "YAPAY ZEKA DESTEKLİ",
+      "startFrame": 400,
+      "durationInFrames": 90
+    },
+    {
+      "id": "checklist",
+      "effectType": "checklist",
+      "text": "Cihaz sizi yarı yolda bırakır",
+      "items": [
+        "Pil biter",
+        "Abonelik biter",
+        "İnternet gider",
+        "Sistem çöker"
+      ],
+      "mode": "cross",
+      "startFrame": 500,
+      "durationInFrames": 90
+    },
+    {
+      "id": "timeline",
+      "effectType": "timeline",
+      "text": "Bir dönem herkes bunun peşindeydi",
+      "steps": [
+        "VR",
+        "Blockchain",
+        "NFT",
+        "Yapay zeka"
+      ],
+      "startFrame": 600,
+      "durationInFrames": 90
+    },
+    {
+      "id": "question",
+      "effectType": "questionHook",
+      "text": "Elimizden ne gelir?",
+      "startFrame": 700,
+      "durationInFrames": 90
+    },
+    {
+      "id": "chapter",
+      "effectType": "chapter",
+      "text": "Öğrenmeyi bırakma",
+      "number": "1",
+      "subtext": "Birinci konu",
+      "startFrame": 800,
+      "durationInFrames": 90
+    },
+    {
+      "id": "quote",
+      "effectType": "quote",
+      "text": "Eğer bir bilgi buradaysa o sizin gücünüz oluyor",
+      "highlight": [
+        "gücünüz"
+      ],
+      "subtext": "Konuşmacı",
+      "startFrame": 900,
+      "durationInFrames": 90
+    },
+    {
+      "id": "statement",
+      "effectType": "bigStatement",
+      "text": "Her şeyi otomatik yaptım!",
+      "startFrame": 1000,
+      "durationInFrames": 90
+    },
+    {
+      "id": "glitch",
+      "effectType": "glitch",
+      "text": "Bu gerçek değil!",
+      "startFrame": 1100,
+      "durationInFrames": 90
+    },
+    {
+      "id": "emoji",
+      "effectType": "emojiBurst",
+      "emoji": "fire",
+      "text": "Çok iştah açıcı",
+      "startFrame": 1200,
+      "durationInFrames": 90
+    },
+    {
+      "id": "shapes",
+      "effectType": "shapesBurst",
+      "text": "Başarı!",
+      "startFrame": 1300,
+      "durationInFrames": 90
+    },
+    {
+      "id": "lower",
+      "effectType": "lowerThird",
+      "text": "İspanya",
+      "subtext": "Konuşmacının bulunduğu yer",
+      "startFrame": 1400,
+      "durationInFrames": 90
+    },
+    {
+      "id": "progress",
+      "effectType": "progressBar",
+      "text": "Otomasyon seviyesi",
+      "value": 70,
+      "marks": [
+        {
+          "value": 30,
+          "label": "30"
+        },
+        {
+          "value": 60,
+          "label": "60"
+        }
+      ],
+      "startFrame": 1500,
+      "durationInFrames": 90
+    },
+    {
+      "id": "card",
+      "effectType": "transitionCard",
+      "text": "Sonraki bölüm",
+      "subtext": "İş görüşmeleri",
+      "enter": "clockWipe",
+      "exit": "iris",
+      "startFrame": 1600,
+      "durationInFrames": 90
+    },
+    {
+      "id": "leak",
+      "effectType": "lightLeak",
+      "text": "Çayınızı alın ☕",
+      "startFrame": 1700,
+      "durationInFrames": 90
+    },
+    {
+      "id": "burst",
+      "effectType": "starburst",
+      "text": "Başlıyoruz",
+      "startFrame": 1800,
+      "durationInFrames": 90
+    },
+    {
+      "id": "slideglow",
+      "effectType": "kineticText",
+      "text": "Slide ve glow",
+      "enter": "slide",
+      "exit": "fade",
+      "fx": [
+        {
+          "name": "glow",
+          "radius": 30,
+          "color": "#ffd84d"
+        }
+      ],
+      "startFrame": 1900,
+      "durationInFrames": 90
+    },
+    {
+      "id": "wave",
+      "effectType": "bigStatement",
+      "text": "Dalga efekti",
+      "enter": "wipe",
+      "fx": [
+        {
+          "name": "wave",
+          "amplitude": 12,
+          "wavelength": 200
+        }
+      ],
+      "startFrame": 2000,
+      "durationInFrames": 90
+    }
+  ]
+}

@@ -1,0 +1,153 @@
+import type {EffectDescriptor} from "remotion";
+import {barrelDistortion} from '@remotion/effects/barrel-distortion';
+import {blur} from '@remotion/effects/blur';
+import {burlap} from '@remotion/effects/burlap';
+import {flannel} from '@remotion/effects/flannel';
+import {checkerboard} from '@remotion/effects/checkerboard';
+import {chromaticAberration} from '@remotion/effects/chromatic-aberration';
+import {colorKey} from '@remotion/effects/color-key';
+import {colorCorrection} from '@remotion/effects/color-correction';
+import {brightness} from '@remotion/effects/brightness';
+import {contrast} from '@remotion/effects/contrast';
+import {contourLines} from '@remotion/effects/contour-lines';
+import {dropShadow} from '@remotion/effects/drop-shadow';
+import {duotone} from '@remotion/effects/duotone';
+import {emboss} from '@remotion/effects/emboss';
+import {evolve} from '@remotion/effects/evolve';
+import {exposure} from '@remotion/effects/exposure';
+import {fisheye} from '@remotion/effects/fisheye';
+import {cornerPin} from '@remotion/effects/corner-pin';
+import {glow} from '@remotion/effects/glow';
+import {gridlines} from '@remotion/effects/gridlines';
+import {halftone} from '@remotion/effects/halftone';
+import {halftoneLinearGradient} from '@remotion/effects/halftone-linear-gradient';
+import {pixelDissolve} from '@remotion/effects/pixel-dissolve';
+import {pixelate} from '@remotion/effects/pixelate';
+import {grayscale} from '@remotion/effects/grayscale';
+import {hue} from '@remotion/effects/hue';
+import {invert} from '@remotion/effects/invert';
+import {lines} from '@remotion/effects/lines';
+import {linearGradient} from '@remotion/effects/linear-gradient';
+import {linearGradientTint} from '@remotion/effects/linear-gradient-tint';
+import {liquidContours} from '@remotion/effects/liquid-contours';
+import {linearProgressiveBlur} from '@remotion/effects/linear-progressive-blur';
+import {linearProgressivePixelate} from '@remotion/effects/linear-progressive-pixelate';
+import {levels} from '@remotion/effects/levels';
+import {lut} from '@remotion/effects/lut';
+import {lightLeak} from '@remotion/effects/light-leak';
+import {lightTrail} from '@remotion/effects/light-trail';
+import {dotGrid} from '@remotion/effects/dot-grid';
+import {mirror} from '@remotion/effects/mirror';
+import {noise} from '@remotion/effects/noise';
+import {noiseDisplacement} from '@remotion/effects/noise-displacement';
+import {outline} from '@remotion/effects/outline';
+import {paper} from '@remotion/effects/paper';
+import {roughenEdges} from '@remotion/effects/roughen-edges';
+import {pattern} from '@remotion/effects/pattern';
+import {radialProgressiveBlur} from '@remotion/effects/radial-progressive-blur';
+import {radialProgressivePixelate} from '@remotion/effects/radial-progressive-pixelate';
+import {regionBlur} from '@remotion/effects/region-blur';
+import {rings} from '@remotion/effects/rings';
+import {saturation} from '@remotion/effects/saturation';
+import {scanlines} from '@remotion/effects/scanlines';
+import {scale} from '@remotion/effects/scale';
+import {shadowsHighlights} from '@remotion/effects/shadows-highlights';
+import {shine} from '@remotion/effects/shine';
+import {shrinkwrap} from '@remotion/effects/shrinkwrap';
+import {skew} from '@remotion/effects/skew';
+import {speckle} from '@remotion/effects/speckle';
+import {starburst} from '@remotion/effects/starburst';
+import {tear} from '@remotion/effects/tear';
+import {thermalVision} from '@remotion/effects/thermal-vision';
+import {tile} from '@remotion/effects/tile';
+import {tint} from '@remotion/effects/tint';
+import {xyTranslate as translate} from '@remotion/effects/translate';
+import {tvSignalOff} from '@remotion/effects/tv-signal-off';
+import {venetianBlinds} from '@remotion/effects/venetian-blinds';
+import {vibrance} from '@remotion/effects/vibrance';
+import {vignette} from '@remotion/effects/vignette';
+import {wave} from '@remotion/effects/wave';
+import {waves} from '@remotion/effects/waves';
+import {whiteBalance} from '@remotion/effects/white-balance';
+import {whiteNoise} from '@remotion/effects/white-noise';
+import {zoomBlur} from '@remotion/effects/zoom-blur';
+import {zigzag} from '@remotion/effects/zigzag';
+
+export type EffectFactory = (params?: Record<string, unknown>) => EffectDescriptor<unknown>;
+
+// Every canvas effect shipped in @remotion/effects, addressable by its package subpath name.
+export const EFFECTS: Record<string, EffectFactory> = {
+  'barrel-distortion': barrelDistortion as EffectFactory,
+  'blur': blur as EffectFactory,
+  'burlap': burlap as EffectFactory,
+  'flannel': flannel as EffectFactory,
+  'checkerboard': checkerboard as EffectFactory,
+  'chromatic-aberration': chromaticAberration as EffectFactory,
+  'color-key': colorKey as EffectFactory,
+  'color-correction': colorCorrection as EffectFactory,
+  'brightness': brightness as EffectFactory,
+  'contrast': contrast as EffectFactory,
+  'contour-lines': contourLines as EffectFactory,
+  'drop-shadow': dropShadow as EffectFactory,
+  'duotone': duotone as EffectFactory,
+  'emboss': emboss as EffectFactory,
+  'evolve': evolve as EffectFactory,
+  'exposure': exposure as EffectFactory,
+  'fisheye': fisheye as EffectFactory,
+  'corner-pin': cornerPin as EffectFactory,
+  'glow': glow as EffectFactory,
+  'gridlines': gridlines as EffectFactory,
+  'halftone': halftone as EffectFactory,
+  'halftone-linear-gradient': halftoneLinearGradient as EffectFactory,
+  'pixel-dissolve': pixelDissolve as EffectFactory,
+  'pixelate': pixelate as EffectFactory,
+  'grayscale': grayscale as EffectFactory,
+  'hue': hue as EffectFactory,
+  'invert': invert as EffectFactory,
+  'lines': lines as EffectFactory,
+  'linear-gradient': linearGradient as EffectFactory,
+  'linear-gradient-tint': linearGradientTint as EffectFactory,
+  'liquid-contours': liquidContours as EffectFactory,
+  'linear-progressive-blur': linearProgressiveBlur as EffectFactory,
+  'linear-progressive-pixelate': linearProgressivePixelate as EffectFactory,
+  'levels': levels as EffectFactory,
+  'lut': lut as EffectFactory,
+  'light-leak': lightLeak as EffectFactory,
+  'light-trail': lightTrail as EffectFactory,
+  'dot-grid': dotGrid as EffectFactory,
+  'mirror': mirror as EffectFactory,
+  'noise': noise as EffectFactory,
+  'noise-displacement': noiseDisplacement as EffectFactory,
+  'outline': outline as EffectFactory,
+  'paper': paper as EffectFactory,
+  'roughen-edges': roughenEdges as EffectFactory,
+  'pattern': pattern as EffectFactory,
+  'radial-progressive-blur': radialProgressiveBlur as EffectFactory,
+  'radial-progressive-pixelate': radialProgressivePixelate as EffectFactory,
+  'region-blur': regionBlur as EffectFactory,
+  'rings': rings as EffectFactory,
+  'saturation': saturation as EffectFactory,
+  'scanlines': scanlines as EffectFactory,
+  'scale': scale as EffectFactory,
+  'shadows-highlights': shadowsHighlights as EffectFactory,
+  'shine': shine as EffectFactory,
+  'shrinkwrap': shrinkwrap as EffectFactory,
+  'skew': skew as EffectFactory,
+  'speckle': speckle as EffectFactory,
+  'starburst': starburst as EffectFactory,
+  'tear': tear as EffectFactory,
+  'thermal-vision': thermalVision as EffectFactory,
+  'tile': tile as EffectFactory,
+  'tint': tint as EffectFactory,
+  'translate': translate as EffectFactory,
+  'tv-signal-off': tvSignalOff as EffectFactory,
+  'venetian-blinds': venetianBlinds as EffectFactory,
+  'vibrance': vibrance as EffectFactory,
+  'vignette': vignette as EffectFactory,
+  'wave': wave as EffectFactory,
+  'waves': waves as EffectFactory,
+  'white-balance': whiteBalance as EffectFactory,
+  'white-noise': whiteNoise as EffectFactory,
+  'zoom-blur': zoomBlur as EffectFactory,
+  'zigzag': zigzag as EffectFactory,
+};

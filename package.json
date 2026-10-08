@@ -1,0 +1,62 @@
+{
+  "name": "subanimo",
+  "version": "1.0.0",
+  "description": "Turns a talking-head video's subtitles into transparent animated overlays (ProRes 4444) and DaVinci Resolve timelines. Local web app + CLI, built on Remotion.",
+  "license": "PolyForm-Noncommercial-1.0.0",
+  "private": true,
+  "bin": {
+    "subanimo": "bin/subanimo.js"
+  },
+  "files": [
+    "bin",
+    "dist",
+    "src",
+    "ui",
+    "scripts",
+    "prompts"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json",
+    "app": "node dist/render.js app",
+    "dev": "tsx src/render.ts",
+    "studio": "remotion studio src/index.ts",
+    "postinstall": "node scripts/fetch-assets.js",
+    "package": "node scripts/package.js"
+  },
+  "dependencies": {
+    "@remotion/animated-emoji": "4.0.534",
+    "@remotion/animation-utils": "4.0.534",
+    "@remotion/bundler": "4.0.534",
+    "@remotion/captions": "4.0.534",
+    "@remotion/effects": "4.0.534",
+    "@remotion/fonts": "4.0.534",
+    "@remotion/gif": "4.0.534",
+    "@remotion/google-fonts": "4.0.534",
+    "@remotion/layout-utils": "4.0.534",
+    "@remotion/light-leaks": "4.0.534",
+    "@remotion/lottie": "4.0.534",
+    "@remotion/motion-blur": "4.0.534",
+    "@remotion/noise": "4.0.534",
+    "@remotion/paths": "4.0.534",
+    "@remotion/renderer": "4.0.534",
+    "@remotion/rough-notation": "4.0.534",
+    "@remotion/shapes": "4.0.534",
+    "@remotion/transitions": "4.0.534",
+    "lottie-web": "5.13.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "remotion": "4.0.534"
+  },
+  "devDependencies": {
+    "@remotion/cli": "4.0.534",
+    "@types/node": "^26.6.4",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}

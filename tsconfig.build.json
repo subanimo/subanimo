@@ -1,0 +1,20 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "node16",
+    "moduleResolution": "node16",
+    "noEmit": false,
+    "outDir": "dist",
+    "rootDir": "src"
+  },
+  "include": [
+    "src/render.ts",
+    "src/server.ts",
+    "src/engine.ts",
+    "src/types.ts",
+    "src/edl.ts",
+    "src/srt.ts",
+    "src/prompts.ts",
+    "src/validate.ts"
+  ]
+}
